@@ -17,6 +17,7 @@ client = opendota.OpenDota()
 data = []
 data = client.search_hero()
 
+rolechoice = input("What role do you want to play? (Options: All, Carry, Support): ")
 
 #function to randomize support heroes
 def support_low_prio():
@@ -33,9 +34,6 @@ def support_low_prio():
     
     print("\nSupport Randomizer")
     print(f"\nYour options are {filtered_support_data[support_value3]}, {filtered_support_data[support_value2]} and {filtered_support_data[support_value1]}!\n")
-    
-support_low_prio()
-
 
 def carry_low_prio():
     filtered_carry_data = [hero['localized_name'] for hero in data if 'Carry' in hero['roles']]
@@ -50,8 +48,6 @@ def carry_low_prio():
     #print(filtered_carry_data)
     print("\nCarry Randomizer")
     print(f"\nYour options are {filtered_carry_data[carry_value3]}, {filtered_carry_data[carry_value2]} and {filtered_carry_data[carry_value1]}!\n")
-
-carry_low_prio()
 
 #function to randomize 3 values for low prio
 def lowprio():
@@ -69,8 +65,14 @@ def lowprio():
     print(f"\nYour options are {filtered_hero_data[value3]}, {filtered_hero_data[value2]} and {filtered_hero_data[value1]}!\n")
     
 
-lowprio()
-
-
-
 #return carry / support / all depending on what user wants
+if rolechoice.lower == "": 
+    print("No input!")
+elif rolechoice.lower() == "support":
+    support_low_prio()
+elif rolechoice.lower() == "all":
+    lowprio()
+elif rolechoice.lower() == "carry":
+    carry_low_prio()
+else: 
+    print("Unrecognized Input")
